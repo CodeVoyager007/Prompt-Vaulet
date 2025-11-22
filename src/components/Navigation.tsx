@@ -108,6 +108,12 @@ export function Navigation() {
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
+                      <Link to="/dashboard" className="cursor-pointer">
+                        <User className="w-4 h-4 mr-2" />
+                        Dashboard
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
                       <Link to="/profile?tab=starred" className="cursor-pointer">
                         <Star className="w-4 h-4 mr-2" />
                         Starred

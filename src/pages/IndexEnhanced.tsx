@@ -60,38 +60,49 @@ const IndexEnhanced = () => {
   const fetchAllPrompts = async () => {
     setLoading(true);
     try {
-      // Fetch featured prompts (most starred overall)
-      const { data: featured } = await supabase
-        .from("prompts")
-        .select(`
-          *,
-          profiles:user_id (username)
-        `)
-        .order("star_count", { ascending: false })
-        .limit(30);
+      if (!searchQuery) {
+        // Fetch featured prompts (most starred overall)
+        const { data: featured } = await supabase
+          .from("prompts")
+          .select(`
+            *,
+            profiles:user_id (username)
+          `)
+          .order("star_count", { ascending: false })
+          .limit(30);
 
-      // Fetch trending prompts (most starred in last 7 days)
-      const sevenDaysAgo = new Date();
-      sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-      const { data: trending } = await supabase
-        .from("prompts")
-        .select(`
-          *,
-          profiles:user_id (username)
-        `)
-        .gte("created_at", sevenDaysAgo.toISOString())
-        .order("star_count", { ascending: false })
-        .limit(30);
+        // Fetch trending prompts (most starred in last 7 days)
+        const sevenDaysAgo = new Date();
+        sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+        const { data: trending } = await supabase
+          .from("prompts")
+          .select(`
+            *,
+            profiles:user_id (username)
+          `)
+          .gte("created_at", sevenDaysAgo.toISOString())
+          .order("star_count", { ascending: false })
+          .limit(30);
 
-      // Fetch recent prompts
-      const { data: recent } = await supabase
-        .from("prompts")
-        .select(`
-          *,
-          profiles:user_id (username)
-        `)
-        .order("created_at", { ascending: false })
-        .limit(30);
+        // Fetch recent prompts
+        const { data: recent } = await supabase
+          .from("prompts")
+          .select(`
+            *,
+            profiles:user_id (username)
+          `)
+          .order("created_at", { ascending: false })
+          .limit(30);
+        
+        setFeaturedPrompts(featured || []);
+        setTrendingPrompts(trending || []);
+        setRecentPrompts(recent || []);
+      } else {
+        // Clear these sections when searching
+        setFeaturedPrompts([]);
+        setTrendingPrompts([]);
+        setRecentPrompts([]);
+      }
 
       // Fetch main prompts with filters
       let query = supabase
@@ -112,9 +123,6 @@ const IndexEnhanced = () => {
 
       const { data: mainPrompts } = await query;
 
-      setFeaturedPrompts(featured || []);
-      setTrendingPrompts(trending || []);
-      setRecentPrompts(recent || []);
       setPrompts(mainPrompts || []);
     } catch (error) {
       console.error("Error fetching prompts:", error);
