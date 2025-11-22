@@ -1,6 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Profile } from "@/pages/Profile";
-import { Settings } from "@/pages/Settings";
+import Settings from "@/pages/Settings";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 

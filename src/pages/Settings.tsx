@@ -15,7 +15,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-export const Settings = () => {
+export default function Settings() {
   const { toast } = useToast();
   const [newPassword, setNewPassword] = useState("");
   const [loading, setLoading] = useState(false);
