@@ -102,21 +102,9 @@ export function Navigation() {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-48 bg-card/95 backdrop-blur-xl border-border/50">
                     <DropdownMenuItem asChild>
-                      <Link to="/profile" className="cursor-pointer">
-                        <User className="w-4 h-4 mr-2" />
-                        My Profile
-                      </Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
                       <Link to="/dashboard" className="cursor-pointer">
                         <User className="w-4 h-4 mr-2" />
                         Dashboard
-                      </Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                      <Link to="/profile?tab=starred" className="cursor-pointer">
-                        <Star className="w-4 h-4 mr-2" />
-                        Starred
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />

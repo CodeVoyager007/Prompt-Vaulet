@@ -10,7 +10,6 @@ import CategoryPage from "./pages/CategoryPage";
 import Auth from "./pages/Auth";
 import Upload from "./pages/Upload";
 import PromptDetail from "./pages/PromptDetail";
-import Profile from "./pages/Profile";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
@@ -32,11 +31,9 @@ const App = () => (
             <Route path="/auth" element={<Auth />} />
             <Route path="/upload" element={<Upload />} />
             <Route path="/prompt/:id" element={<PromptDetail />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/profile/:id" element={<Profile />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard/:id?" element={<Dashboard />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
